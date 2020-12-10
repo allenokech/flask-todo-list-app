@@ -1,9 +1,10 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from os import getenv
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:password@35.246.16.254/flask_todo_db"
-
+app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URI")
+app.config["SECRET_KEY"] = getenv("SECRET_KEY")
 db = SQLAlchemy(app)
 
 from application import routes
